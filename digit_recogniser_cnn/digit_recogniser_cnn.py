@@ -97,36 +97,42 @@ def load_image(path_or_url):
 def main():
     dr = DigitRecognizerCNN()
 
-    while True:
-        print("\nCommands: train | detect | exit")
-        cmd = input("Enter command: ").strip().lower()
+    try:
+        while True:
+                print("\nCommands: train | detect | exit")
+                cmd = input("Enter command: ").strip().lower()
 
-        if cmd == 'exit':
-            break
+                if cmd == 'exit':
+                    break
 
-        elif cmd == 'train':
-            dr.train()
+                elif cmd == 'train':
+                    dr.train()
 
-        elif cmd == 'detect':
-            if not dr.model:
-                print("Model not loaded. Run `train` first.")
-                continue
+                elif cmd == 'detect':
+                    if not dr.model:
+                        print("Model not loaded. Run `train` first.")
+                        continue
 
-            path = input("Image path or URL (.png/.jpg): ").strip()
-            if not path:
-                print("No path provided.")
-                continue
+                    path = input("Image path or URL (.png/.jpg): ").strip()
+                    if not path:
+                        print("No path provided.")
+                        continue
 
-            try:
-                arr = load_image(path)
-            except Exception as e:
-                print(f"Failed to load image: {e}")
-                continue
+                    try:
+                        arr = load_image(path)
+                    except Exception as e:
+                        print(f"Failed to load image: {e}")
+                        continue
 
-            digit = dr.predict(arr)
-            print(f"Predicted digit: {digit}")
+                    digit = dr.predict(arr)
+                    print(f"Predicted digit: {digit}")
 
-        else:
-            print("Unknown command. Use train, detect, or exit.")
+                else:
+                    print("Unknown command. Use train, detect, or exit.")
 
-    print("Exiting Digit Recognizer Module.")
+
+    except KeyboardInterrupt:
+    # catch Ctrl+C here
+        print("\nInterrupted. Returning to main menu.")
+    finally:
+        print("Exiting Digit Recognizer Module.")

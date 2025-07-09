@@ -17,44 +17,51 @@ def clear_console():
 
 def main():
     while True:
-        clear_console()
-        print("======================================")
-        print(" Welcome to the AI Learning Environment")
-        print("======================================\n")
-        print("Which module would you like to run?")
-        print("1. Number Guessing Game")
-        print("2. Spam Classifier")
-        print("3. Sentiment Analyzer")
-        print("4. Handwritten Digit Recognizer (CNN)")
-        choice = input("Enter 1, 2, 3, 4 or exit: ").strip()
+        try:
+            clear_console()
+            print("======================================")
+            print(" Welcome to the AI Learning Environment")
+            print("======================================\n")
+            print("Which module would you like to run?")
+            print("1. Number Guessing Game")
+            print("2. Spam Classifier")
+            print("3. Sentiment Analyzer")
+            print("4. Handwritten Digit Recognizer (CNN)")
+            choice = input("Enter 1, 2, 3, 4 or exit: ").strip()
 
-        if choice == "1":
-            play_game()
+            if choice == "1":
+                play_game()
 
-        elif choice == "2":
-            train_spam_classifier()
-            try:
-                classify_message_loop()
-            except KeyboardInterrupt:
-                print("\nReturning to main menu.")
+            elif choice == "2":
+                train_spam_classifier()
+                try:
+                    classify_message_loop()
+                except KeyboardInterrupt:
+                    print("\nReturning to main menu.")
 
-        elif choice == "3":
-            train_sentiment_analyzer()
-            try:
-                classify_sentiment_loop()
-            except KeyboardInterrupt:
-                print("\nReturning to main menu.")
+            elif choice == "3":
+                train_sentiment_analyzer()
+                try:
+                    classify_sentiment_loop()
+                except KeyboardInterrupt:
+                    print("\nReturning to main menu.")
 
-        elif choice == "4":
-            digit_cnn_main()   # now runs train/detect menu inside the module
+            elif choice == "4":
+                digit_cnn_main()   # now runs train/detect menu inside the module
 
-        elif choice.lower() == "exit":
-            print("Exiting the AI Learning Environment. Goodbye!")
+            elif choice.lower() == "exit":
+                print("Exiting the AI Learning Environment. Goodbye!")
+                break
+
+            else:
+                print("Invalid choice. Please select from available modules.")
+                input("Press Enter to continue...")
+
+
+        except KeyboardInterrupt:
+            # catch Ctrl+C here
+            print("\nExiting the AI Learning Environment.")
             break
-
-        else:
-            print("Invalid choice. Please select from available modules.")
-            input("Press Enter to continue...")
 
 if __name__ == "__main__":
     main()
