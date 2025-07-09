@@ -11,6 +11,8 @@ from sentiment_analyzer.sentiment_analyzer import (
     train_sentiment_analyzer,
     classify_sentiment_loop
 )
+from image_classifier.image_classifier import image_classifier_main
+
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -27,6 +29,7 @@ def main():
             print("2. Spam Classifier")
             print("3. Sentiment Analyzer")
             print("4. Handwritten Digit Recognizer (CNN)")
+            print("5. General Image Classifier")
             choice = input("Enter 1, 2, 3, 4 or exit: ").strip()
 
             if choice == "1":
@@ -49,6 +52,9 @@ def main():
             elif choice == "4":
                 digit_cnn_main()   # now runs train/detect menu inside the module
 
+            elif choice == "5":
+                image_classifier_main()
+                
             elif choice.lower() == "exit":
                 print("Exiting the AI Learning Environment. Goodbye!")
                 break

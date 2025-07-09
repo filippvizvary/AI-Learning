@@ -6,3 +6,7 @@ tensorflow.keras
 flask
 nltk
 opencv-python
+transformers
+torch
+torchvision
+hf_xet
