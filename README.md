@@ -30,16 +30,6 @@ AI-Learning
    python -m venv venv
    ```
 
-3. **Activate the Virtual Environment**: 
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - On macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-
 4. **Install Dependencies**: 
    ```bash
    pip install -r requirements.txt
