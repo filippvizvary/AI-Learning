@@ -21,7 +21,7 @@ AI-Learning
 
 1. **Clone the Repository**: 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/filippvizvary/AI-Learning.git
    cd AI-Learning
    ```
 
