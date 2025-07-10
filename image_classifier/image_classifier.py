@@ -14,27 +14,18 @@ def load_model():
 
 def detect_image(image):
     labels = ["a cat", "a dog", "a car", "a tree", "a human", "a pizza", "a keyboard", "a sunset", "a traffic light", "a bicycle", "a book", "a phone", "a chair", "a computer", "a flower", "a bird", "a plane", "a train", "a boat", "a watch", "a camera", "a guitar", "a hat", "a shoe", "a bag", "a bottle", "a glass", "a clock", "a lamp", "a mirror", "a painting", "a sculpture", "a toy", "a ball", "a drum", "a violin", "a trumpet", "a saxophone"]
-    inputs = processor(images=image, text=labels, return_tensors="pt", padding=True)
-    outputs = model(**inputs)
+    inputs = processor(images=image, text=labels, return_tensors="pt", padding=True) # type: ignore
+    outputs = model(**inputs) # type: ignore
     probs = outputs.logits_per_image.softmax(dim=1)
     return labels[probs.argmax()], probs.max().item()
 
 def open_image():
     try:
         print("\nChoose image source:")
-        print("1. Enter file path manually")
-        print("2. Enter image URL")
-        choice = input("Enter 1 or 2 (or Ctrl+C to cancel): ").strip()
 
-        if choice == "1":
-            path = input("Enter the full image path (JPG/PNG): ").strip()
-            image = Image.open(path)
-        elif choice == "2":
-            url = input("Paste image URL: ").strip()
-            image = Image.open(requests.get(url, stream=True).raw)
-        else:
-            print("Invalid option.")
-            return None
+
+        path = input("\nEnter the full image path (JPG/PNG): ").strip()
+        image = Image.open(path)
 
         if image.format not in ("JPEG", "PNG"):
             print("Unsupported format. Please use JPG or PNG.")
